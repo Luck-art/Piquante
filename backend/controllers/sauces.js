@@ -81,7 +81,7 @@ exports.likeSauce = (req, res) => {
         sauce.usersLiked.push(req.body.userId);
       }
       else {
-        console.log(req.body.userId + ' existe déjà dans le tableau');
+        res.status(409).json({error: req.body.userId + ' a déjà liker la sauce'});      
       }
     }
     if(req.body.like === -1) {
@@ -90,7 +90,7 @@ exports.likeSauce = (req, res) => {
         sauce.usersDisliked.push(req.body.userId)
       }
       else if(sauce.usersDisliked.indexOf(req.body.userId) > -1) {
-        console.log(req.body.userId + ' existe déjà dans le tableau');
+        res.status(409).json({error: req.body.userId + ' a déjà disliker la sauce'});
       }
     }
     if(req.body.like === 0) {
@@ -104,8 +104,6 @@ exports.likeSauce = (req, res) => {
           sauce.dislikes--
           sauce.usersDisliked.splice(dislikesContainer, 1)
         }
-        console.log(likesContainer);
-        console.log(dislikesContainer);
     }
     sauce.save() 
     .then(() => res.status(200).json({  message: 'Sauce modifiée!'}))
