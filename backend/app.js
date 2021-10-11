@@ -16,6 +16,15 @@ mongoose.connect('mongodb+srv://userNormal:SkyClearOP1519@cluster0.nravs.mongodb
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+mongoose.connect('mongodb+srv://userAdmin:TurtleOp1643@cluster0.nravs.mongodb.net/Projet-6?retryWrites=true&w=majority',
+{ useNewUrlParser: true, 
+  useCreateIndex: true, 
+  useUnifiedTopology: true, 
+  useFindAndModify: true})
+.then(() => console.log('Connexion à MongoDB réussie !'))
+.catch(() => console.log('Connexion à MongoDB échouée !'));
+
+console.log(mongoose);
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
